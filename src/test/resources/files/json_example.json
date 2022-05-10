@@ -1,0 +1,11 @@
+{
+  "isSuspect": false,
+  "coordinates": {
+    "lat": 65.3342,
+    "lon": 54.3342
+  },
+  "distance": 7.22,
+  "duration": 45,
+  "forecastDiff": -1,
+  "platform": "iOS"
+}
