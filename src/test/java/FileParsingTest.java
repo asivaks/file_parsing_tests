@@ -42,33 +42,8 @@ public class FileParsingTest {
 
         return destFile;
     }
-     */
 
-    //unzip all files from files/zip_example.zip to files/temp folder
-    //https://www.youtube.com/watch?v=zAspD6KO3DU
-    @BeforeAll
-    static void unzipToTempSelenium() throws FileNotFoundException, IOException {
-        // ClassLoader classLoader = getClass().getClassLoader();
-        // classloader method is not static and could not be called from another static method eg BeforeAll
-        // should be used
-        ClassLoader classLoader = FileParsingTest.class.getClassLoader();
-        String fileZip = "files/zip_example.zip";
-        // need to use stream
-        //Zip.unzip(new FileInputStream("files/zip_example.zip"), new File("./temp"));
-        InputStream inputStream = classLoader.getResourceAsStream(fileZip);
-        Zip.unzip(inputStream, new File("./src/test/resources/files/temp"));
-    }
 
-    //delete files/temp folder after all tests
-    @AfterAll
-    static void deleteTemp() throws IOException {
-        String tempDirPath = "./src/test/resources/files/temp";
-        File tempDir = new File(tempDirPath);
-        FileUtils.deleteDirectory(tempDir);
-
-    }
-
-/*
 // better to do it with Selenium
     @BeforeAll
     static void unzipToTemp() throws Exception {
@@ -101,6 +76,31 @@ public class FileParsingTest {
     }
 
  */
+
+    //unzip all files from files/zip_example.zip to files/temp folder
+    //https://www.youtube.com/watch?v=zAspD6KO3DU
+    @BeforeAll
+    static void unzipToTempSelenium() throws FileNotFoundException, IOException {
+        // ClassLoader classLoader = getClass().getClassLoader();
+        // classloader method is not static and could not be called from another static method eg BeforeAll
+        // should be used
+        ClassLoader classLoader = FileParsingTest.class.getClassLoader();
+        String fileZip = "files/zip_example.zip";
+        // need to use stream
+        //Zip.unzip(new FileInputStream("files/zip_example.zip"), new File("./temp"));
+        InputStream inputStream = classLoader.getResourceAsStream(fileZip);
+        Zip.unzip(inputStream, new File("./src/test/resources/files/temp"));
+    }
+
+    //delete files/temp folder after all tests
+    @AfterAll
+    static void deleteTemp() throws IOException {
+        String tempDirPath = "./src/test/resources/files/temp";
+        File tempDir = new File(tempDirPath);
+        FileUtils.deleteDirectory(tempDir);
+    }
+
+
 
     @Test
     void parsePdfTest() throws Exception {
